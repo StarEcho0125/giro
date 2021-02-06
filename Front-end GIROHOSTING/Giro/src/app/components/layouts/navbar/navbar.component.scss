@@ -1,0 +1,27 @@
+.default-btn {
+    padding: 5px 20px;
+}
+
+nav:nth-child(1) {
+    top: 41px;
+}
+
+@media only screen and (max-width: 767px) {
+    nav:nth-child(1) {
+        top: 60.5px;
+    }
+}
+
+::ng-deep select#selecIdioma {
+    background-color: #04063c;
+    border: none;
+    display: initial !important;
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5;
+}
+
+::ng-deep nav .nice-select {
+    display: none;
+}

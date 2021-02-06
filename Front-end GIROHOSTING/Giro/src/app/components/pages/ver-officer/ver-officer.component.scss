@@ -1,0 +1,32 @@
+.row {
+    padding: 10px;
+}
+
+h4 {
+    margin-bottom: 0;
+    color: #3f51b5;
+}
+
+.center {
+    margin: auto;
+}
+
+.btnimg {
+    border-radius: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+td:nth-child(2) {
+    cursor: pointer;
+}
+
+.m-container {
+    margin: 10px auto;
+}
+
+::ng-deep .mat-column-id {
+    width: 10%;
+}

@@ -1,0 +1,135 @@
+<div class="m-container background row d-flex justify-content-center align-items-center">
+    <div class="col-md-8 mb-md-0 mb-3 d-flex justify-content-center">
+        <div class="card">
+            <div class="card-header text-left">
+                <h2>Editar cliente</h2>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputNomFiscal">Nombre fiscal</label>
+                            <input type="text" class="form-control" value="white night" id="inputNomFiscal" name="nom" [(ngModel)]="client.nom" formControlName="nomFiscal" [ngClass]="{'is-invalid' : form.get('nomFiscal').touched && form.get('nomFiscal').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputNomComercial">Nombre comercial</label>
+                            <input type="text" class="form-control" id="inputNomComercial" name="name_alias" [(ngModel)]="client.name_alias" formControlName="nomComercial" [ngClass]="{'is-invalid' : form.get('nomComercial').touched && form.get('nomComercial').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputDireccio">Dirección</label>
+                            <input type="text" class="form-control" id="inputDireccio" name="address" [(ngModel)]="client.address" formControlName="direccio" [ngClass]="{'is-invalid' : form.get('direccio').touched && form.get('direccio').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCodiPostal">Codigo postal</label>
+                            <input type="text" class="form-control" id="inputCodiPostal" name="zip" [(ngModel)]="client.zip" formControlName="codiPostal" [ngClass]="{'is-invalid' : form.get('codiPostal').touched && form.get('codiPostal').invalid}">
+                            <div *ngIf="form.get('codiPostal').touched && form.get('codiPostal').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('codiPostal').errors?.required">Este campo es obligatorio.</div>
+                                <div *ngIf="form.get('codiPostal').errors.pattern">{{ 'REGISTER.INVALID_FEEDBACK2' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPoblacio">Población </label>
+                            <input type="text" class="form-control" id="inputPoblacio" name="town" [(ngModel)]="client.town" formControlName="poblacio" [ngClass]="{'is-invalid' : form.get('poblacio').touched && form.get('poblacio').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputProvincia">Provincia</label>
+                            <!-- El datalist no funcionaba por el ngModel -->
+                            <select class="form-control" name="fk_departement" [(ngModel)]="client.fk_departement" formControlName="provincia" [ngClass]="{'is-invalid' : form.get('provincia').touched && form.get('provincia').invalid}">
+								<option selected="selected" disabled>{{ 'REGISTER.INFO1' | translate }}</option>
+								<option *ngFor="let provincia of provincies; index as i" value="{{provincia.rowid}}">{{provincia.nom}}</option>
+							</select>
+                            <div class="invalid-feedback">
+                                Elige una provincia.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPais">Pais</label>
+                            <select class="form-control" name="fk_pays" [(ngModel)]="client.fk_pays" formControlName="pais" [ngClass]="{'is-invalid' : form.get('pais').touched && form.get('pais').invalid}">
+								<option selected="selected" disabled>{{ 'REGISTER.INFO2' | translate }}</option>
+								<option *ngFor="let pais of paisos; index as i" value="{{pais.rowid}}">{{pais.code_iso}} - {{pais.label}}</option>
+							</select>
+                            <div class="invalid-feedback">
+                               Elige un país.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputTelefon">Teléfono</label>
+                            <input type="text" class="form-control" id="inputTelefon" name="phone" [(ngModel)]="client.phone" formControlName="telefon" [ngClass]="{'is-invalid' : form.get('telefon').touched && form.get('telefon').invalid}">
+                            <div *ngIf="form.get('telefon').touched && form.get('telefon').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('telefon').errors?.required">Este campo es obligatorio.</div>
+                                <div *ngIf="form.get('telefon').errors.pattern">Por favor ingrese un número de teléfono válido.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail">E-mail</label>
+                            <input type="text" class="form-control" id="inputEmail" name="email" [(ngModel)]="client.email" formControlName="email" [ngClass]="{'is-invalid' : form.get('email').touched && form.get('email').invalid}">
+                            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('email').errors?.required">Este campo es obligatorio.</div>
+                                <div *ngIf="form.get('email').errors.email">Por favor introduzca una dirección de correo electrónico válida.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputNif">CIF/NIF*</label>
+                            <input type="text" class="form-control" id="inputNif" name="siren" [(ngModel)]="client.siren" formControlName="cifNif" [ngClass]="{'is-invalid' : form.get('cifNif').touched && form.get('cifNif').invalid}">
+                            <div *ngIf="form.get('cifNif').touched && form.get('cifNif').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('cifNif').errors?.required">Este campo es requerido.</div>
+                                <div *ngIf="form.get('cifNif').errors.minlength || form.get('cifNif').errors.maxlength ">Ingrese un CIF / NIF válido</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputContrasenya">Password </label>
+							<input type="password" class="form-control" id="inputContrasenya" name="password"
+							formControlName="contrasenya" [ngClass]="{'is-invalid' : form.get('contrasenya').touched && form.get('contrasenya').invalid}">
+							<div *ngIf="form.get('contrasenya').touched && form.get('contrasenya').invalid" class="invalid-feedback">
+								<div *ngIf="form.get('contrasenya').errors?.required">This field is required.</div>
+								<div *ngIf="form.get('contrasenya').errors.minlength">Please enter a valid password. (min. 12 characters)</div>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputConfirmarContrasenya">Confirm password</label>
+							<input type="password" class="form-control" id="inputConfirmarContrasenya" (blur)="passwdMatch()" (keyup)="passwdMatch()"
+							formControlName="confContrasenya" [ngClass]="{'is-invalid' : form.get('confContrasenya').touched && form.get('confContrasenya').invalid}">
+							<div class="invalid-feedback">
+								Passwords do not match.
+							</div>
+						</div>
+					</div> -->
+                    <!-- <div class="form-group form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1" required
+						formControlName="acceptarPolitiques" [ngClass]="{'is-invalid' : form.get('acceptarPolitiques').touched && form.get('acceptarPolitiques').invalid}">
+						<label class="check form-check-label" for="exampleCheck1">I agree to the <a routerLink="/politica-privacitat">Privacy Policy</a>.</label>
+						<div *ngIf="form.get('acceptarPolitiques').touched && form.get('acceptarPolitiques').errors?.required" class="invalid-feedback">
+							You must accept our policies.
+						</div>
+					</div> -->
+                    <div class="form-group">
+                        <!-- <button mat-raised-button class="float-right" (click)="onBack()">Atras</button> -->
+                        <button type="submit" mat-raised-button class="float-right" style="margin-right: 10px;" color="primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

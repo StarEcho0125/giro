@@ -1,0 +1,20 @@
+.div-spacer {
+    display: block;
+    clear: both;
+    height: 20px;
+    &:first-child {
+        margin-top: 150px;
+    }
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}
+
+::ng-deep .nice-select {
+    display: none;
+}
+
+select {
+    display: initial !important;
+}

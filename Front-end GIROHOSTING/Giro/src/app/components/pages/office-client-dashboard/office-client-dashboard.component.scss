@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+}
+
+td:nth-child(2) {
+    cursor: pointer;
+}
+
+.m-container {
+    margin: 10px auto;
+}
+
+::ng-deep .mat-column-id {
+    width: 10%;
+}

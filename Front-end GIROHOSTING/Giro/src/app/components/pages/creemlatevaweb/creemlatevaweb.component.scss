@@ -1,0 +1,50 @@
+@media only screen and (min-width: 767px) {
+    .banner-text {
+        margin-top: 140px;
+        p {
+            margin-bottom: 10px;
+        }
+    }
+    .main-banner-area-two {
+        height: 140vh;
+    }
+    .banner-img {
+        top: 180px;
+    }
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}
+
+.single-technology {
+    min-height: 508.4px;
+}
+
+h3[data-toggle=collapse] {
+    padding: 10px 0;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hosting-solution-wrap {
+    h4 {
+        color: white;
+    }
+}
+
+.shared-hosting-area {
+    a {
+        h3 {
+            color: #22105f;
+            transition: color .5s ease-in;
+        }
+        &:hover {
+            cursor: pointer;
+            h3 {
+                color: white;
+            }
+        }
+    }
+}

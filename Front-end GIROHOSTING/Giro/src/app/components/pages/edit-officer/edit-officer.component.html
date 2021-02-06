@@ -1,0 +1,93 @@
+<div class="m-container background row d-flex justify-content-center align-items-center">
+    <div class="col-md-8 mb-md-0 mb-3 d-flex justify-content-center" id="card_container">
+        <div class="card">
+            <div class="card-header text-left">
+                <h2>Edita tu Partner Oficial</h2>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputNomFiscal">Apellido</label>
+                            <input type="text" class="form-control" id="inputNomFiscal" name="nom" [(ngModel)]="worker.lastname" formControlName="lastname" [ngClass]="{'is-invalid' : form.get('lastname').touched && form.get('lastname').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputNomComercial">Nombre</label>
+                            <input type="text" class="form-control" id="inputNomComercial" name="name_alias" [(ngModel)]="worker.firstname" formControlName="firstname" [ngClass]="{'is-invalid' : form.get('firstname').touched && form.get('firstname').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputDireccio">Login</label>
+                            <input type="text" class="form-control" id="inputDireccio" name="address" [(ngModel)]="worker.login" formControlName="login" [ngClass]="{'is-invalid' : form.get('login').touched && form.get('login').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCodiPostal">Postal code</label>
+                            <input type="text" class="form-control" id="inputCodiPostal" name="zip" [(ngModel)]="worker.zip" formControlName="zip" [ngClass]="{'is-invalid' : form.get('zip').touched && form.get('zip').invalid}">
+                            <div *ngIf="form.get('zip').touched && form.get('zip').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('zip').errors?.required">This field is required.</div>
+                                <div *ngIf="form.get('zip').errors.pattern">{{ 'REGISTER.INVALID_FEEDBACK2' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail">E-mail</label>
+                            <input type="text" class="form-control" id="inputEmail" name="email" [(ngModel)]="worker.email" formControlName="email" [ngClass]="{'is-invalid' : form.get('email').touched && form.get('email').invalid}">
+                            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('email').errors?.required">This field is required.</div>
+                                <div *ngIf="form.get('email').errors.email">Please enter a valid email.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPoblacio">Population </label>
+                            <input type="text" class="form-control" id="inputPoblacio" name="town" [(ngModel)]="worker.town" formControlName="town" [ngClass]="{'is-invalid' : form.get('town').touched && form.get('town').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputTelefon">Telefono fijo</label>
+                            <input type="text" class="form-control" id="inputTelefon" name="phone" [(ngModel)]="worker.office_phone" formControlName="office_phone" [ngClass]="{'is-invalid' : form.get('office_phone').touched && form.get('office_phone').invalid}">
+                            <div *ngIf="form.get('office_phone').touched && form.get('office_phone').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('office_phone').errors?.required">Este campo es obligatorio</div>
+                                <div *ngIf="form.get('office_phone').errors.pattern">Por favor ingrese un número de teléfono válido.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputMobil">Móvil</label>
+                            <input type="text" class="form-control" id="inputMobil" name="phone" [(ngModel)]="worker.personal_mobile" formControlName="personal_mobile" [ngClass]="{'is-invalid' : form.get('personal_mobile').touched && form.get('personal_mobile').invalid}">
+                            <div *ngIf="form.get('personal_mobile').touched && form.get('personal_mobile').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('personal_mobile').errors?.required">Este campo es requerido.</div>
+                                <div *ngIf="form.get('personal_mobile').errors.pattern">Por favor ingrese un número de teléfono válido.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputDirective">Dirección</label>
+                            <input type="text" class="form-control" id="inputDirective" name="address" [(ngModel)]="worker.address" formControlName="address" [ngClass]="{'is-invalid' : form.get('address').touched && form.get('address').invalid}">
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" style="float: right;">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

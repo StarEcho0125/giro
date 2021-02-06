@@ -1,0 +1,14 @@
+<nav mat-tab-nav-bar [backgroundColor]="background" color="primary" dynamicHeight>
+    <h3 id="m-title">{{user_nom}}</h3>
+
+    <a mat-tab-link (click)="onBack()">
+        <mat-icon class="userpage-tab-icon">desktop_windows</mat-icon><br>
+        <p>{{'ADMIN_FIELD.NAVBAR.SUPERADMIN_PAGE' | translate}}</p>
+    </a>
+    <a mat-tab-link routerLinkactive [routerLink]="link.route" *ngFor="let link of links" (click)="this.userdetails.activeLink = link.title" [active]="this.userdetails.activeLink == link.title">
+        <mat-icon class="userpage-tab-icon">{{link.icon}}</mat-icon><br>
+        <p>{{link.title | translate}}</p>
+    </a>
+
+</nav>
+<router-outlet></router-outlet>

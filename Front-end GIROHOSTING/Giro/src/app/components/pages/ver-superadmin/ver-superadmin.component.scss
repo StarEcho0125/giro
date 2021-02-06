@@ -1,0 +1,90 @@
+.row {
+    margin: 20px;
+}
+
+.div-spacer {
+    display: block;
+    clear: both;
+    height: 20px;
+}
+
+#btnTop {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnTop svg {
+    width: 30px;
+    height: 30px;
+}
+
+.container.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.load {
+    // position: absolute;
+    position: fixed;
+    text-align: center;
+    margin: 200px auto;
+}
+
+.load.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.create-client {
+    float: left;
+}
+
+.create-administrator {
+    float: right;
+}
+
+.fix-height {
+    height: 400px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.center {
+    margin: auto;
+}
+
+.btnimg {
+    border-radius: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+::ng-deep .mat-column-name {
+    width: 60%;
+}
+
+::ng-deep .mat-column-client,
+::ng-deep .mat-column-admin {
+    width: 40%;
+}
+
+tr td:first-child {
+    cursor: pointer;
+}
+
+button.btn_green {
+    background-color: green !important;
+    color: white;
+}

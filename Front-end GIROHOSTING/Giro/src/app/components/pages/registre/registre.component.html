@@ -1,0 +1,134 @@
+<div class="background row d-flex justify-content-center align-items-center">
+    <div class="col-md-8 mb-md-0 mb-3 d-flex justify-content-center">
+        <div class="card">
+            <div class="card-header text-left">
+                <h3>{{ 'REGISTER.TITLE' | translate }}</h3>
+                <hr>
+            </div>
+            <div class="card-body">
+                <small class="form-text">{{ 'REGISTER.CONTENT1' | translate }}</small>
+                <br>
+                <form (ngSubmit)="enregistrarClient()" [formGroup]="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputNomFiscal">{{ 'REGISTER.INPUT1' | translate }}</label>
+                            <input type="text" class="form-control" id="inputNomFiscal" placeholder="{{ 'REGISTER.PLACEHOLDER1' | translate }}" name="nom" [(ngModel)]="client.nom" formControlName="nomFiscal" [ngClass]="{'is-invalid' : form.get('nomFiscal').touched && form.get('nomFiscal').invalid}">
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK1' | translate }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputNomComercial">{{ 'REGISTER.INPUT2' | translate }}</label>
+                            <input type="text" class="form-control" id="inputNomComercial" placeholder="{{ 'REGISTER.PLACEHOLDER2' | translate }}" name="name_alias" [(ngModel)]="client.name_alias" formControlName="nomComercial" [ngClass]="{'is-invalid' : form.get('nomComercial').touched && form.get('nomComercial').invalid}">
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK1' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputDireccio">{{ 'REGISTER.INPUT3' | translate }}</label>
+                            <input type="text" class="form-control" id="inputDireccio" placeholder="{{ 'REGISTER.PLACEHOLDER3' | translate }}" name="address" [(ngModel)]="client.address" formControlName="direccio" [ngClass]="{'is-invalid' : form.get('direccio').touched && form.get('direccio').invalid}">
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK1' | translate }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCodiPostal">{{ 'REGISTER.INPUT4' | translate }}</label>
+                            <input type="text" class="form-control" id="inputCodiPostal" placeholder="{{ 'REGISTER.PLACEHOLDER4' | translate }}" name="zip" [(ngModel)]="client.zip" formControlName="codiPostal" [ngClass]="{'is-invalid' : form.get('codiPostal').touched && form.get('codiPostal').invalid}">
+                            <div *ngIf="form.get('codiPostal').touched && form.get('codiPostal').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('codiPostal').errors?.required">{{ 'REGISTER.INVALID_FEEDBACK1' | translate }}</div>
+                                <div *ngIf="form.get('codiPostal').errors.pattern">{{ 'REGISTER.INVALID_FEEDBACK2' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPoblacio">{{ 'REGISTER.INPUT5' | translate }}</label>
+                            <input type="text" class="form-control" id="inputPoblacio" name="town" [(ngModel)]="client.town" formControlName="poblacio" [ngClass]="{'is-invalid' : form.get('poblacio').touched && form.get('poblacio').invalid}">
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK1' | translate }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputProvincia">{{ 'REGISTER.INPUT6' | translate }}</label>
+                            <!-- El datalist no funcionaba por el ngModel -->
+                            <select class="form-control" name="fk_departement" [(ngModel)]="client.fk_departement" formControlName="provincia" [ngClass]="{'is-invalid' : form.get('provincia').touched && form.get('provincia').invalid}">
+								<option selected="selected" disabled>{{ 'REGISTER.INFO1' | translate }}</option>
+								<option *ngFor="let provincia of provincies; index as i" value="{{provincia.rowid}}">{{provincia.nom}}</option>
+							</select>
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK3' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPais">{{ 'REGISTER.INPUT7' | translate }}</label>
+                            <select class="form-control" name="fk_pays" [(ngModel)]="client.fk_pays" formControlName="pais" [ngClass]="{'is-invalid' : form.get('pais').touched && form.get('pais').invalid}">
+								<option selected="selected" disabled>{{ 'REGISTER.INFO2' | translate }}</option>
+								<option *ngFor="let pais of paisos; index as i" value="{{pais.rowid}}">{{pais.code_iso}} - {{pais.label}}</option>
+							</select>
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK4' | translate }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputTelefon">{{ 'REGISTER.INPUT8' | translate }}</label>
+                            <input type="text" class="form-control" id="inputTelefon" placeholder="{{ 'REGISTER.PLACEHOLDER5' | translate }}" name="phone" [(ngModel)]="client.phone" formControlName="telefon" [ngClass]="{'is-invalid' : form.get('telefon').touched && form.get('telefon').invalid}">
+                            <div *ngIf="form.get('telefon').touched && form.get('telefon').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('telefon').errors?.required">{{ 'REGISTER.INVALID_FEEDBACK1' | translate }}</div>
+                                <div *ngIf="form.get('telefon').errors.pattern">{{ 'REGISTER.INVALID_FEEDBACK5' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail">{{ 'REGISTER.INPUT9' | translate }}</label>
+                            <input type="text" class="form-control" id="inputEmail" placeholder="{{ 'REGISTER.PLACEHOLDER6' | translate }}" name="email" [(ngModel)]="client.email" formControlName="email" [ngClass]="{'is-invalid' : form.get('email').touched && form.get('email').invalid}">
+                            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('email').errors?.required">{{ 'REGISTER.INVALID_FEEDBACK1' | translate }}</div>
+                                <div *ngIf="form.get('email').errors.email">{{ 'REGISTER.INVALID_FEEDBACK6' | translate }}</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputNif">CIF/NIF*</label>
+                            <input type="text" class="form-control" id="inputNif" name="siren" [(ngModel)]="client.siren" formControlName="cifNif" [ngClass]="{'is-invalid' : form.get('cifNif').touched && form.get('cifNif').invalid}">
+                            <div *ngIf="form.get('cifNif').touched && form.get('cifNif').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('cifNif').errors?.required">{{ 'REGISTER.INVALID_FEEDBACK1' | translate }}</div>
+                                <div *ngIf="form.get('cifNif').errors.minlength || form.get('cifNif').errors.maxlength ">{{ 'REGISTER.INVALID_FEEDBACK7' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputContrasenya">{{ 'REGISTER.INPUT10' | translate }}</label>
+                            <input type="password" class="form-control" id="inputContrasenya" placeholder="{{ 'REGISTER.PLACEHOLDER7' | translate }}" name="password" [(ngModel)]="client.password" formControlName="contrasenya" [ngClass]="{'is-invalid' : form.get('contrasenya').touched && form.get('contrasenya').invalid}">
+                            <div *ngIf="form.get('contrasenya').touched && form.get('contrasenya').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('contrasenya').errors?.required">{{ 'REGISTER.INVALID_FEEDBACK1' | translate }}</div>
+                                <div *ngIf="form.get('contrasenya').errors.minlength">{{ 'REGISTER.INVALID_FEEDBACK8' | translate }}</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputConfirmarContrasenya">{{ 'REGISTER.INPUT11' | translate }}</label>
+                            <input type="password" class="form-control" id="inputConfirmarContrasenya" placeholder="{{ 'REGISTER.PLACEHOLDER8' | translate }}" (blur)="passwdMatch()" (keyup)="passwdMatch()" formControlName="confContrasenya" [ngClass]="{'is-invalid' : form.get('confContrasenya').touched && form.get('confContrasenya').invalid}">
+                            <div class="invalid-feedback">
+                                {{ 'REGISTER.INVALID_FEEDBACK9' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" required formControlName="acceptarPolitiques" [ngClass]="{'is-invalid' : form.get('acceptarPolitiques').touched && form.get('acceptarPolitiques').invalid}">
+                        <label class="check form-check-label" for="exampleCheck1">{{ 'REGISTER.CONTENT2' | translate }}<a routerLink="/politica-privacitat">{{ 'REGISTER.LINK1' | translate }}</a>.</label>
+                        <div *ngIf="form.get('acceptarPolitiques').touched && form.get('acceptarPolitiques').errors?.required" class="invalid-feedback">
+                            {{ 'REGISTER.INVALID_FEEDBACK10' | translate }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="{{ 'REGISTER.BUTTON1' | translate }}" class="btn float-right login_btn" [disabled]="!form.valid">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

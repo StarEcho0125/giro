@@ -1,0 +1,9 @@
+<nav mat-tab-nav-bar backgroundColor="primary" color="primary" dynamicHeight>
+    <button mat-raised-button id="btn_green" *ngIf="this.role == 1" (click)="GoBack()">{{ 'ADMIN_FIELD.BUTTON.ATRAS' | translate }}</button>
+    <h3 id="m-title">{{ 'ADMIN_FIELD.TITLE.ADMINISTRADOR' | translate }} | {{ officername }}</h3>
+    <a mat-tab-link routerLinkactive [routerLink]="link.route" *ngFor="let link of links" (click)="this.userDetailsService.activeOfficerLink = link.title" [active]="this.userDetailsService.activeOfficerLink == link.title">
+        <mat-icon class="userpage-tab-icon">{{link.icon}}</mat-icon><br>
+        <p>{{link.title | translate}}</p>
+    </a>
+</nav>
+<router-outlet></router-outlet>

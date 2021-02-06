@@ -1,0 +1,14 @@
+p::before {
+    content: '✓ ';
+    color: rgb(31, 206, 69);
+}
+
+@media only screen and (max-width: 767px) {
+    h2 {
+        margin-top: 45px;
+    }
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}

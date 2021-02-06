@@ -1,0 +1,19 @@
+.m-container {
+    margin: 10px auto;
+}
+
+.card-header {
+    background-color: #e1e5ff;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+::ng-deep .nice-select {
+    display: none;
+}
+
+select {
+    display: initial !important;
+}

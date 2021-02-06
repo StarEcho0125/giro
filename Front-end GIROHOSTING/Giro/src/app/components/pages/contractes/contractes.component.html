@@ -1,0 +1,108 @@
+<div class="container m-container animate__animated animate__zoomIn animate__delay-2s">
+    <!-- <div class="jumbotron mt-5">
+        <div class="headerPerfil col-sm-12 mx-auto d-flex justify-content-center align-items-center">
+            <h4 class="text-center">ELS TEUS CONTRACTES</h4>
+        </div>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+        <table class="table table-striped w-75 mx-auto">
+            <tbody>
+                <tr>
+                    <th>Contractes</th>
+                </tr>
+                <tr *ngFor="let contract of contractes; index as i">
+                    <td><a type="button" (click)="onClick(contract.last_main_doc)">{{pressupost.ref}}</a></td>
+                    <td>
+                        <form *ngIf="!contract.fk_projet" [formGroup]="myForm" (ngSubmit)="submit(contractes[i].rowid)">
+                            <div class="form-group" style="float: left">
+                                <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)" />
+                            </div>
+                            <button class="btn btn-primary" type="submit" name="{{contract.rowid}}">Sign</button>
+                        </form>
+                        <div *ngIf="contract.fk_projet">Signed</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    <form [formGroup]="myForm" style="display: none;">
+        <div class="form-group" style="float: left; width:85%">
+            <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)" />
+        </div>
+    </form>
+
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search Filter" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <!-- <div class="m-loading-shade" *ngIf="isLoaging">
+            <mat-spinner *ngIf="isLoaging"></mat-spinner>
+        </div> -->
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre documento </th>
+                <td mat-cell *matCellDef="let row"> {{row.ref}} </td>
+            </ng-container>
+
+            <!-- Fitchero Column -->
+            <ng-container matColumnDef="file">
+                <th mat-header-cell *matHeaderCellDef> Fichero </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button style="color: green;" #tooltip="matTooltip" matTooltip="Download" matTooltipPosition="below" matTooltipHideDelay="10" (click)="onClick('contract/' + row.ref + '/' + row.ref + '.pdf/' + paramId)">
+                        <mat-icon>cloud_download</mat-icon>
+                    </button>
+                    <button *ngIf="!row.fk_projet && role == 1" mat-icon-button style="color: green;" #tooltip="matTooltip" matTooltip="Select file" matTooltipPosition="below" matTooltipHideDelay="10" (click)="openFileDialog(row.rowid)">
+                        <mat-icon>cloud_upload</mat-icon>
+                    </button>
+                    <button *ngIf="!row.fk_projet && role == 1" mat-icon-button style="color: green;" [id]="('btn_sign_').concat(row.rowid)" #tooltip="matTooltip" matTooltip="Sign" matTooltipPosition="below" matTooltipHideDelay="10" (click)="submit(row.rowid)" [disabled]="!(!isDisabled && (curFileRowId == row.rowid))">
+                        <mat-icon>assignment_turned_in</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Fetcha modif. Column -->
+            <ng-container matColumnDef="date_modified">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ADMIN_FIELD.TABLE_HEADER.DATE_MODIFIED' | translate}} </th>
+                <td mat-cell *matCellDef="let row"> {{row.tms}} </td>
+            </ng-container>
+
+            <!-- Fetcha validate Column -->
+            <ng-container matColumnDef="date_valid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ADMIN_FIELD.TABLE_HEADER.DATE_VALIDATION' | translate}} </th>
+                <td mat-cell *matCellDef="let row"> {{row.date_valid}} </td>
+            </ng-container>
+
+            <!-- Fetcha subido Column -->
+            <ng-container matColumnDef="date_uploaded">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ADMIN_FIELD.TABLE_HEADER.DATE_UPLOADED' | translate}} </th>
+                <td mat-cell *matCellDef="let row">
+                    {{row.date_uploaded}}
+                    <button *ngIf="row.fk_projet && role == 1" mat-icon-button #tooltip="matTooltip" matTooltip="Signed" matTooltipPosition="below" matTooltipHideDelay="10" (click)="onClickLastBtn(row.uploaded_file_path)">
+                        <mat-icon style="color: green;">cloud_download</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="6" style="text-align: center;">No data matching the filter</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    </div>
+</div>

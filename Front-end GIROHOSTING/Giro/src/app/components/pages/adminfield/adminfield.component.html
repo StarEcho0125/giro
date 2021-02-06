@@ -1,0 +1,10 @@
+<nav mat-tab-nav-bar [backgroundColor]="background" color="primary" dynamicHeight>
+    <h3 id="m-title">SuperAdmin</h3>
+
+    <a mat-tab-link routerLinkactive [routerLink]="link.route" *ngFor="let link of links" (click)="this.userDetailsService.activeSuperadminLink = link.title" [active]="this.userDetailsService.activeSuperadminLink == link.title">
+        <mat-icon class="userpage-tab-icon">{{link.icon}}</mat-icon><br>
+        <p>{{link.title | translate}}</p>
+    </a>
+
+</nav>
+<router-outlet></router-outlet>

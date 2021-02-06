@@ -1,0 +1,35 @@
+.single-technology .technology-icon-bg svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    color: #00a7f5;
+}
+
+.single-technology {
+    min-height: 506px;
+}
+
+.imatgesGoogle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+
+.imatgeGoogle {
+    text-align: center;
+}
+
+.single-affiliate-info {
+    min-height: 421px;
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}

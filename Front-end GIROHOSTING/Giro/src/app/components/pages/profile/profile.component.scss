@@ -1,0 +1,91 @@
+.div-spacer {
+    display: block;
+    clear: both;
+    height: 20px;
+}
+
+#btnTop {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnTop svg {
+    width: 30px;
+    height: 30px;
+}
+
+.headerPerfil button {
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.container.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.load {
+    // position: absolute;
+    position: fixed;
+    text-align: center;
+    margin: 200px auto;
+}
+
+.load.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+h1 {
+    padding-top: 35px;
+    color: blue;
+    font-size: 20px;
+}
+
+.margin_top_bottom {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.padding_top {
+    padding-top: 20px;
+}
+
+.padding_top p {
+    margin: 0px;
+}
+
+.background_grey {
+    background-color: #e9ecef;
+}
+
+.separar p {
+    margin-top: 5px;
+}
+
+.padding_right_del {
+    padding-right: 0px;
+}
+
+.padding_del {
+    padding: 0px;
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}
+
+.container {
+    margin-top: 150px;
+    margin-bottom: 50px;
+}

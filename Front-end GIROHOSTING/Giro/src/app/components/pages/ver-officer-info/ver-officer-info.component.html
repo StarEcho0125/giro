@@ -1,0 +1,87 @@
+<div class="container animate__animated animate__zoomIn animate__delay-4s">
+    <div class="row margin_top_bottom border">
+        <div class="col-12 padding_del">
+            <div class="row border-bottom padding_del" style="border-bottom: grey; background-color: white;">
+                <div class="col-2 padding_del">
+                    <div class="form-group" [formGroup]="imgForm">
+                        <div class="profile_wrapper">
+                            <!-- <div *ngIf="isDefaultLogo()" class="btnimg" (click)="clickimg()">
+                                <mat-icon id="add_photo_icon">add_box</mat-icon>
+                            </div> -->
+                            <img class="btnimg" src="{{previewUrl}}" (click)="clickimg()">
+                            <button *ngIf="!is_default" id="submit" class="btn" (click)="onSubmit()">
+                                <mat-icon id="btn_icon">camera_enhance</mat-icon>
+                            </button>
+                        </div>
+                        <input formControlName="imgfile" type="file" name="image" (change)="onfileChange($event)" id="my_file" style="display: none;" />
+                    </div>
+                </div>
+                <div class="col-4 d-flex align-items-center">
+                    <h3>{{worker.lastname}}</h3>
+
+                </div>
+                <div class="col-6 d-flex align-items-center">
+                    <button mat-raised-button color="primary" (click)="edit_client()">Editar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 background_grey">
+
+            <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.INFORMACIO_CONTACTE' | translate }}</h1>
+            <div class="border-bottom padding_top">
+                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.INFORMACIO_CONTACTE_EMAIL' | translate }}</p>
+
+                <p class="para_contact">{{worker.email}}</p>
+
+            </div>
+
+            <div class="border-bottom padding_top">
+                <p>Telefono fijo</p>
+
+                <p class="para_contact">{{worker.office_phone}}</p>
+
+            </div>
+
+            <div class="border-bottom padding_top">
+                <p>Móvil</p>
+
+                <p class="para_contact">{{worker.personal_mobile}}</p>
+
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="row border-bottom" style="border-bottom: grey; background-color: white;">
+                <div class="col-12">
+                    <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.DADES_CLIENT' | translate }}</h1>
+
+                    <div class="row">
+                        <div class="col-3 text-right separar padding_right_del">
+                            <p style="font-weight: bold;">Nombre</p>
+                            <p style="font-weight: bold;">Login</p>
+                            <p style="font-weight: bold;">Postal code</p>
+                            <p style="font-weight: bold;">Population</p>
+                            <p style="font-weight: bold;">Dirección</p>
+
+                            <div class="div-spacer"></div>
+                            <div class="div-spacer"></div>
+
+                        </div>
+                        <div class="col-4 separar">
+
+                            <p> {{worker.firstname}} </p>
+
+                            <p> {{worker.login}} </p>
+
+                            <p> {{worker.zip}} </p>
+
+                            <p> {{worker.town}} </p>
+
+                            <p> {{worker.address}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

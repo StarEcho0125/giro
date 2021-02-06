@@ -1,0 +1,45 @@
+h3#m-title {
+    color: white;
+    padding-top: 5px;
+    margin-right: 170px;
+    margin-left: 5px;
+}
+
+::ng-deep .material-icons {
+    font-size: 27px !important;
+}
+
+::ng-deep .mat-tab-links {
+    padding: 5px;
+}
+
+::ng-deep .mat-tab-link-container {
+    z-index: 0 !important;
+}
+
+.mat-tab-nav-bar {
+    margin-top: 127px;
+    margin-bottom: 50px;
+}
+
+.mat-tab-nav-bar a {
+    text-decoration: none;
+    display: block;
+}
+
+.mat-tab-nav-bar a[ng-reflect-active=true] {
+    opacity: 1;
+}
+
+.userpage-tab-icon {
+    display: initial;
+    margin-top: 5px;
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}
+
+::ng-deep .mat-tab-link>p {
+    font-size: 11px;
+}

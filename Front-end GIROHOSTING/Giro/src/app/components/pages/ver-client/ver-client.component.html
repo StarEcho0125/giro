@@ -1,0 +1,137 @@
+<div class="container animate__animated animate__zoomIn animate__delay-4s">
+    <div class="row margin_top_bottom border">
+        <div class="col-12 padding_del">
+            <div class="row border-bottom padding_del" style="border-bottom: grey; background-color: white;">
+                <div class="col-2 padding_del">
+                    <div class="form-group" [formGroup]="imgForm">
+                        <div class="profile_wrapper">
+                            <!-- <div *ngIf="isDefaultLogo()" class="btnimg" (click)="clickimg()">
+                                <mat-icon id="add_photo_icon">add_box</mat-icon>
+                            </div> -->
+                            <img class="btnimg" src="{{previewUrl}}" (click)="clickimg()">
+                            <button *ngIf="!is_default" id="submit" class="btn" (click)="onSubmit()">
+                                <mat-icon id="btn_icon">camera_enhance</mat-icon>
+                            </button>
+                        </div>
+                        <input formControlName="imgfile" type="file" name="image" (change)="onfileChange($event)" id="my_file" style="display: none;" />
+                    </div>
+                </div>
+                <div class="col-4 d-flex align-items-center">
+                    <h3>{{user_name_alias}}</h3>
+
+                </div>
+                <div class="col-6 d-flex align-items-center" *ngIf="role == 1">
+                    <button mat-raised-button color="primary" (click)="edit_client()">Editar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 background_grey">
+
+            <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.INFORMACIO_CONTACTE' | translate }}</h1>
+            <div class="border-bottom padding_top">
+                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.INFORMACIO_CONTACTE_EMAIL' | translate }}</p>
+
+                <p class="para_contact">{{user_email}}</p>
+
+            </div>
+
+            <div class="border-bottom padding_top">
+                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.INFORMACIO_CONTACTE_TELEFON' | translate }}</p>
+
+                <p class="para_contact">{{user_phone}}</p>
+
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="row border-bottom" style="border-bottom: grey; background-color: white;">
+                <div class="col-12">
+                    <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.DADES_CLIENT' | translate }}</h1>
+
+                    <div class="row">
+                        <div class="col-3 text-right separar padding_right_del">
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_NOM_FISCAL' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_NOM_COMERCIAL' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_DNI' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_WEB' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_DIRECCIO' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_CIP' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_POBLACIO' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_PROVINCIA' | translate }}</p>
+                            <p style="font-weight: bold;">{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_PAIS' | translate }}</p>
+
+                            <div class="div-spacer"></div>
+                            <div class="div-spacer"></div>
+
+                        </div>
+                        <div class="col-4 separar">
+
+                            <p> {{user_nom}} </p>
+
+                            <p> {{user_name_alias}} </p>
+
+                            <p> {{user_siren}} </p>
+
+                            <p> {{user_url}} </p>
+
+                            <p> {{user_address}} </p>
+
+                            <p> {{user_zip}} </p>
+
+                            <p> {{user_town}} </p>
+
+                            <p>{{ user_provincia }}</p>
+
+                            <p>{{ user_pais }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom" style="border-bottom: grey; background-color: white;" *ngIf="role == 1">
+                <div class="col-12">
+                    <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.SEGURETAT' | translate }}</h1>
+                    <div class="row">
+                        <div class="col-3 text-right">
+                            <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.SEGURETAT_CONTRASENYA' | translate }}</p>
+
+
+                        </div>
+                        <div class="col-9">
+                            <button mat-raised-button color="primary" type="button" (click)="btnCanviarContrasenya()">{{ 'CONFIGURACIO_COMPTE.BUTTON.CANVIAR_CONTRASENYA' | translate }} </button>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <form id="form-change-password" role="form" method="POST" novalidate class="form-horizontal" (ngSubmit)="canivarContrasenya(dadesUsuari.password)" [formGroup]="formContrasenya" hidden>
+                                <div class="col-md-9">
+                                    <label for="password" class="col-sm-4 control-label">Nueva contraseña</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+
+                                            <input type="password" class="form-control" id="inputContrasenya" placeholder="Password" name="password" [(ngModel)]="dadesUsuari.password" formControlName="contrasenya">
+                                        </div>
+                                    </div>
+                                    <label for="password_confirmation" class="col-sm-4 control-label">Repetir contraseña</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputConfirmarContrasenya" placeholder="confirma contrasenya" (blur)="passwdMatch()" (keyup)="passwdMatch()" formControlName="confContrasenya">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-5 col-sm-6">
+                                        <button mat-raised-button type="submit" color="primary">{{ 'CONFIGURACIO_COMPTE.BUTTON.GUARDAR' | translate }}</button>
+                                        <button class="btn" (click)="btnCancelarCanvioContrasenya()">{{ 'CONFIGURACIO_COMPTE.BUTTON.CANCELAR' | translate }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

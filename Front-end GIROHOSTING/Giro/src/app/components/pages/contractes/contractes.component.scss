@@ -1,0 +1,109 @@
+.div-spacer {
+    display: block;
+    clear: both;
+    height: 20px;
+}
+
+#btnTop {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnTop svg {
+    width: 30px;
+    height: 30px;
+}
+
+.container.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container.m-container {
+    margin: 10px auto;
+    position: relative;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.load {
+    // position: absolute;
+    position: fixed;
+    text-align: center;
+    margin: 200px auto;
+}
+
+.load.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+a[type=button] {
+    color: blue;
+}
+
+a[type=button]:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+table {
+    width: 100%;
+}
+
+::ng-deep .mat-column-id {
+    width: 10%;
+}
+
+::ng-deep .mat-column-name,
+::ng-deep .mat-column-file {
+    width: 15%;
+}
+
+::ng-deep .mat-column-datec,
+::ng-deep .mat-column-date_modified,
+::ng-deep .mat-column-date_valid {
+    width: 20%;
+}
+
+button {
+    outline: none;
+    margin-right: 5px;
+}
+
+.mat-elevation-z8 {
+    position: relative;
+}
+
+.m-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m-rate-limit-reached {
+    color: #980000;
+    max-width: 360px;
+    text-align: center;
+}
+
+::ng-deep nav.is-sticky select#selecIdioma {
+    background-color: #00a7f5 !important;
+}

@@ -1,0 +1,140 @@
+<form (ngSubmit)="actualitzarPerfilUsuari()" [formGroup]="form">
+    <div class="container animate__animated animate__zoomIn animate__delay-4s">
+        <div class="row margin_top_bottom border">
+            <div class="col-12 padding_del">
+                <div class="row border-bottom padding_del" style="border-bottom: grey; background-color: white;">
+                    <div class="col-2 padding_del">
+                        <img src="../../assets/logosGoogle/cloud_lockup_vert.png" alt="..." class="img-thumbnail padding_del">
+                    </div>
+                    <div class="col-7 d-flex align-items-center">
+                        <h3>{{details?.name_alias}}</h3>
+
+                    </div>
+                    <div class="col-3 d-flex align-items-center">
+                        <button type="button" class="btn btn-success text-center" data-toggle="modal" (click)="onClickMe(details)">
+                            Editar perfil
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 background_grey">
+
+                <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.INFORMACIO_CONTACTE' | translate }}</h1>
+                <div class="border-bottom padding_top">
+                    <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.INFORMACIO_CONTACTE_EMAIL' | translate }}</p>
+
+                    <input value="{{details?.email}}" type="text" class="form-control" id="email" name="email" [(ngModel)]="dadesUsuari.email" formControlName="email" disabled style="background-color: #e9ecef; border-color: #e9ecef;">
+
+                </div>
+
+                <div class="border-bottom padding_top">
+                    <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.INFORMACIO_CONTACTE_TELEFON' | translate }}</p>
+
+                    <input value="{{details?.phone}}" type="text" class="form-control" id="phone" name="phone" [(ngModel)]="dadesUsuari.phone" formControlName="telefon" disabled style="background-color: #e9ecef; border-color: #e9ecef;">
+
+                </div>
+            </div>
+
+            <div class="col-9">
+                <div class="row border-bottom" style="border-bottom: grey; background-color: white;">
+                    <div class="col-12">
+                        <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.DADES_CLIENT' | translate }}</h1>
+
+                        <div class="row">
+                            <div class="col-3 text-right separar padding_right_del">
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_NOM_FISCAL' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_NOM_COMERCIAL' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_DNI' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_WEB' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_DIRECCIO' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_CIP' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_POBLACIO' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_PROVINCIA' | translate }}</p>
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.DADES_CLIENT_PAIS' | translate }}</p>
+
+                                <div class="div-spacer"></div>
+                                <div class="div-spacer"></div>
+
+                            </div>
+                            <div class="col-4">
+
+                                <input value="{{details?.nom}}" type="text" class="form-control" id="NomPersona" name="nom" [(ngModel)]="dadesUsuari.nom" formControlName="nomFiscal" disabled style="background-color: white; border-color: white;">
+
+                                <input value="{{details?.name_alias}}" type="text" class="form-control" id="NomEmpresa" name="nom" [(ngModel)]="dadesUsuari.name_alias" formControlName="nomComercial" disabled style="background-color: white; border-color: white;">
+
+                                <input value="{{details?.siren}}" type="text" class="form-control" id="siren" name="siren" [(ngModel)]="dadesUsuari.siren" formControlName="cifNif" disabled style="background-color: white; border-color: white;">
+
+                                <input value="{{details?.url}}" type="text" class="form-control" id="Web" name="web" [(ngModel)]="dadesUsuari.url" formControlName="url" disabled style="background-color: white; border-color: white;margin-top: 3px;">
+
+                                <input value="{{details?.address}}" type="text" class="form-control" id="adresa" name="nom" [(ngModel)]="dadesUsuari.address" formControlName="direccio" disabled style="background-color: white; border-color: white;margin-top: 3px;">
+
+                                <input value="{{details?.zip}}" type="text" class="form-control" id="codiPostal" name="nom" [(ngModel)]="dadesUsuari.zip" formControlName="codiPostal" disabled style="background-color: white; border-color: white;margin-top: 3px;">
+
+                                <input value="{{details?.town}}" type="text" class="form-control" id="poblacio" name="nom" [(ngModel)]="dadesUsuari.town" formControlName="poblacio" disabled style="background-color: white; border-color: white;">
+
+                                <select class="form-control" name="fk_departement" id="provincia" [(ngModel)]="dadesUsuari.fk_departement" formControlName="provincia" [ngClass]="{'is-invalid' : form.get('provincia').touched && form.get('provincia').invalid}" disabled style="background-color: white; border-color: white;margin-top: 3px;">   
+                                    <option *ngFor="let provincia of provincies; index as i" value="{{provincia.rowid}}" selected="{{ provincia.rowid == details?.fk_departement }}" >{{provincia.nom}}</option>
+                                </select>
+
+                                <select class="form-control" name="fk_pays" id="pais" [(ngModel)]="dadesUsuari.fk_pays" formControlName="pais" [ngClass]="{'is-invalid' : form.get('pais').touched && form.get('pais').invalid}" disabled style="background-color: white; border-color: white;">   
+                                    <option *ngFor="let pais of paisos; index as i" value="{{pais.rowid}}"  selected="{{ pais.rowid == details?.fk_pays }}">{{pais.code_iso}} - {{pais.label}}</option>
+                                </select>
+
+                                <button style="margin-top: 20px;" id="btnGuardar" type="submit" class="btn btn-success" hidden>{{ 'CONFIGURACIO_COMPTE.BUTTON.GUARDAR' | translate }}</button>
+                                <button id="btnCancelar" class="btn" (click)="btnCancelar()" hidden>{{ 'CONFIGURACIO_COMPTE.BUTTON.CANCELAR' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row border-bottom" style="border-bottom: grey; background-color: white;">
+                    <div class="col-12">
+                        <h1>{{ 'CONFIGURACIO_COMPTE.TITLE.SEGURETAT' | translate }}</h1>
+                        <div class="row">
+                            <div class="col-3 text-right">
+                                <p>{{ 'CONFIGURACIO_COMPTE.CONTENT.SEGURETAT_CONTRASENYA' | translate }}</p>
+
+
+                            </div>
+                            <div class="col-9">
+                                <p type="button" class="btn btn-success" (click)="btnCanviarContrasenya()">{{ 'CONFIGURACIO_COMPTE.BUTTON.CANVIAR_CONTRASENYA' | translate }} </p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <form id="form-change-password" role="form" method="POST" novalidate class="form-horizontal" (ngSubmit)="canivarContrasenya(dadesUsuari.rowid, dadesUsuari.password)" [formGroup]="formContrasenya" hidden>
+                                    <div class="col-md-9">
+                                        <label for="password" class="col-sm-4 control-label">Nueva contraseña</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+
+                                                <input type="password" class="form-control" id="inputContrasenya" placeholder="Password" name="password" [(ngModel)]="dadesUsuari.password" formControlName="contrasenya">
+                                            </div>
+                                        </div>
+                                        <label for="password_confirmation" class="col-sm-4 control-label">Repite contraseña</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="inputConfirmarContrasenya" placeholder="confirma contrasenya" (blur)="passwdMatch()" (keyup)="passwdMatch()" formControlName="confContrasenya">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-5 col-sm-6">
+                                            <button type="submit" class="btn btn-success">{{ 'CONFIGURACIO_COMPTE.BUTTON.GUARDAR' | translate }}</button>
+                                            <button class="btn" (click)="btnCancelarCanvioContrasenya()">{{ 'CONFIGURACIO_COMPTE.BUTTON.CANCELAR' | translate }}</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
